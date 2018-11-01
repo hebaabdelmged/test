@@ -1,32 +1,40 @@
-# Prerequisites
-*.d
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+ 1 #include <bits/stdc++.h>
+ 2 using namespace std;
+ 3 int main()
+ 4 {
+ 5     int a[100010];
+ 6     int n,i,m,num;
+ 7     while(scanf("%d",&n)!=EOF)
+ 8     {
+ 9         for(i=1;i<=n;i++)
+10             scanf("%d",&a[i]);
+11         sort(a+1,a+1+n);
+12         scanf("%d",&m);
+13         while(m--)
+14         {
+15             scanf("%d",&num);
+16             if(num<a[1])
+17                 printf("0\n");
+18             else if(num>=a[n])
+19                 printf("%d\n",n);
+20             else
+21             {
+22                 int left=1,right=n;
+23                 int mid,ans;
+24                 while(left<=right)
+25                 {
+26                     mid=(left+right)/2;
+27                     if(a[mid]<=num)
+28                     {
+29                         ans=mid;
+30                         left=mid+1;
+31                     }
+32                     else right=mid-1;
+33                 }
+34                 printf("%d\n",ans);
+35             }
+36         }
+37     }
+38     return 0;
+39 }
